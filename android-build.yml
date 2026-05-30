@@ -1,0 +1,22 @@
+name: Lexa Social EAS Build
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Expo CLI globally
+        run: npm install -g eas-cli
+
+      - name: Install Project Dependencies
+        run: npm install

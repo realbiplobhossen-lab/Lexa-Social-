@@ -1,0 +1,20 @@
+{
+  "name": "lexa-social-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios"
+  },
+  "dependencies": {
+    "expo": "~50.0.0",
+    "react": "18.2.0",
+    "react-native": "0.73.2",
+    "@react-navigation/native": "^6.1.9",
+    "@react-navigation/stack": "^6.3.20",
+    "firebase": "^10.8.0",
+    "react-native-webrtc": "^118.0.1",
+    "lucide-react-native": "^0.344.0"
+  }
+}
