@@ -23,10 +23,10 @@ jobs:
       - name: Install Project Dependencies
         run: npm install --legacy-peer-deps
 
-      # সরাসরি আপনার দেওয়া প্রজেক্ট আইডি ট্র্যাক করে এপিকে বিল্ড শুরু হবে
+      # 💡 এখানে --auto-initialize যোগ করা হয়েছে, যা নিজে থেকে আইডি তৈরি করে বিল্ড স্টার্ট করবে
       - name: Build Android APK
         env:
           EAS_NO_VCS: "1"
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas build --platform android --profile preview --non-interactive
+        run: eas build --platform android --profile preview --non-interactive --auto-initialize
         
