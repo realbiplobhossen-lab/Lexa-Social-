@@ -23,7 +23,13 @@ jobs:
       - name: Install Project Dependencies
         run: npm install --legacy-peer-deps
 
-      # 💡 এখানে টোকেন লগইনের প্রফেশনাল এনভায়রনমেন্ট মেথড ব্যবহার করা হয়েছে
+      # 💡 এই নতুন ধাপটি এক্সপো সার্ভারে আপনার প্রজেক্টটি অটোমেটিক রেজিস্টার করে আইডি তৈরি করবে
+      - name: Initialize EAS Project
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: eas project:init --name "lexa-social" --slug "lexa-social" --non-interactive
+
+      # এবার এক্সপো ক্লাউড সার্ভারে অ্যান্ড্রয়েড APK বিল্ড শুরু হবে
       - name: Build Android APK
         env:
           EAS_NO_VCS: "1"
