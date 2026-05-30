@@ -27,7 +27,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "npm install --global eas-cli && npx create-expo-app lexa-social && cd lexa-social && eas init --id 463ba2a0-9dd8-415f-ba9b-953b51f05a49"
+        "projectId": "PqtxzoWalQjwbZ5XMcI5Ljsc2ki2aN2AH-m1Y-D6"
       }
     }
   }
