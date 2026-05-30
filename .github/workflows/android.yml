@@ -1,0 +1,32 @@
+name: Lexa Social APK Build
+
+on:
+  push:
+    branches: [ "main" ] # আপনার গিটহাব ব্রাঞ্চের নাম যদি 'master' হয়, তবে main কেটে master লিখে দিন
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Expo & EAS CLI
+        run: npm install -g expo-cli eas-cli
+
+      - name: Install Project Dependencies
+        run: npm install
+
+      - name: Expo Login with Token
+        run: eas login --token ${{ secrets.EXPO_TOKEN }}
+
+      # এই কমান্ডটি এক্সপো ক্লাউড সার্ভারে আপনার অ্যান্ড্রয়েড APK বিল্ড শুরু করবে
+      - name: Build Android APK
+        run: eas build --platform android --profile preview --non-interactive
+        
