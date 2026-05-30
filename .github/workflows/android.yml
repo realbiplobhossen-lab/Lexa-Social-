@@ -2,7 +2,7 @@ name: Lexa Social APK Build
 
 on:
   push:
-    branches: [ "main" ] # আপনার ব্রাঞ্চের নাম অন্য কিছু হলে তা এখানে দিন
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -23,13 +23,7 @@ jobs:
       - name: Install Project Dependencies
         run: npm install --legacy-peer-deps
 
-      # 💡 এই নতুন ধাপটি এক্সপো সার্ভারে আপনার প্রজেক্টটি অটোমেটিক রেজিস্টার করে আইডি তৈরি করবে
-      - name: Initialize EAS Project
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas project:init --name "lexa-social" --slug "lexa-social" --non-interactive
-
-      # এবার এক্সপো ক্লাউড সার্ভারে অ্যান্ড্রয়েড APK বিল্ড শুরু হবে
+      # সরাসরি আপনার দেওয়া প্রজেক্ট আইডি ট্র্যাক করে এপিকে বিল্ড শুরু হবে
       - name: Build Android APK
         env:
           EAS_NO_VCS: "1"
