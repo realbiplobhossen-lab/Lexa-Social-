@@ -20,14 +20,13 @@ jobs:
       - name: Install Expo & EAS CLI
         run: npm install -g expo-cli eas-cli
 
-      # 💡 এখানে --legacy-peer-deps যোগ করা হয়েছে, যা ভার্সন এরর বাইপাস করবে
       - name: Install Project Dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Expo Login with Token
-        run: eas login --token ${{ secrets.EXPO_TOKEN }}
-
-      # এই কমান্ডটি এক্সপো ক্লাউড সার্ভারে অ্যান্ড্রয়েড APK বিল্ড শুরু করবে
+      # 💡 এখানে টোকেন লগইনের প্রফেশনাল এনভায়রনমেন্ট মেথড ব্যবহার করা হয়েছে
       - name: Build Android APK
+        env:
+          EAS_NO_VCS: "1"
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: eas build --platform android --profile preview --non-interactive
         
