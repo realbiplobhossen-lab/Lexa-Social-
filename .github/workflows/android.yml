@@ -23,9 +23,9 @@ jobs:
       - name: Install Project Dependencies
         run: npm install --legacy-peer-deps
 
+      # 💡 এখানে EAS_NO_VCS সরিয়ে দেওয়া হয়েছে, যাতে eas.json ফাইলটি এক্সপো রিড করতে পারে
       - name: Build Android APK
         env:
-          EAS_NO_VCS: "1"
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: eas build --platform android --profile preview --non-interactive
         
