@@ -20,9 +20,10 @@ jobs:
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      # 💡 এখানে --auto-initialize ফ্ল্যাগ ব্যবহার করা হয়েছে, যা এক্সপো সার্ভারকে বাধ্য করবে নিজে থেকে চাবি (Keystore) বানিয়ে নিতে
+      # 💡 এখানে EAS_BUILD_AUTOMATION: "true" ব্যবহার করা হয়েছে, যা অফিশিয়ালি এক্সপোকে অটোমেটিক চাবি বানানোর সিগন্যাল দেবে
       - name: Trigger EAS Build
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas build --platform android --profile preview --non-interactive --auto-initialize
+          EAS_BUILD_AUTOMATION: "true"
+        run: eas build --platform android --profile preview --non-interactive
         
