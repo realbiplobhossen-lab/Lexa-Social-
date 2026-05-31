@@ -24,7 +24,11 @@
     },
     "web": {
       "favicon": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3ba3d623-a55d-4f15-8f64-df839db0decc"
+      }
     }
   }
 }
-
