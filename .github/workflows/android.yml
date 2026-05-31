@@ -17,21 +17,12 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install Expo & EAS CLI
-        run: npm install -g expo-cli eas-cli
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
 
-      - name: Install Project Dependencies
-        run: npm install --legacy-peer-deps
-
-      # 💡 এক্সপোকে বাধ্য করা হচ্ছে গিটহাব থেকেই রিমোট ক্রেডেনশিয়াল ও অটো-রিলিজ মোড অন করতে
-      - name: Build Android APK
+      # 💡 এখানে --auto-initialize ফ্ল্যাগ ব্যবহার করা হয়েছে, যা এক্সপো সার্ভারকে বাধ্য করবে নিজে থেকে চাবি (Keystore) বানিয়ে নিতে
+      - name: Trigger EAS Build
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-          EAS_BUILD_AUTOMATION: "true"
-        run: |
-          eas build --platform android --profile preview --non-interactive --json > build-output.json || true
-          if grep -q "Generating a new Keystore is not supported" build-output.json || grep -q "Error" build-output.json; then
-            echo "EAS CLI requires manual initialization bypass. Running forced setup..."
-            npx eas-cli build --platform android --profile preview --non-interactive --no-wait
-          fi
-          
+        run: eas build --platform android --profile preview --non-interactive --auto-initialize
+        
