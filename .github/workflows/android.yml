@@ -23,10 +23,10 @@ jobs:
       - name: Install Project Dependencies
         run: npm install --legacy-peer-deps
 
-      # সরাসরি সঠিক আইডি এবং টোকেন ট্র্যাক করে এপিকে বিল্ড শুরু হবে
+      # 💡 এখানে --auto-submit-credentials যোগ করা হয়েছে, যা অটোমেটিক Keystore তৈরি করবে
       - name: Build Android APK
         env:
           EAS_NO_VCS: "1"
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas build --platform android --profile preview --non-interactive
+        run: eas build --platform android --profile preview --non-interactive --auto-submit-credentials
         
