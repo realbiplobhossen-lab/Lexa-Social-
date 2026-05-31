@@ -23,10 +23,11 @@ jobs:
       - name: Install Project Dependencies
         run: npm install --legacy-peer-deps
 
-      # 💡 এখানে --auto-submit-credentials যোগ করা হয়েছে, যা অটোমেটিক Keystore তৈরি করবে
+      # 💡 এখানে EAS_BUILD_AUTOMATION: true দেওয়া হয়েছে, যা গিটহাবকে ব্যাকগ্রাউন্ডে নতুন চাবি তৈরির ফুল পারমিশন দেবে
       - name: Build Android APK
         env:
           EAS_NO_VCS: "1"
+          EAS_BUILD_AUTOMATION: "true"
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas build --platform android --profile preview --non-interactive --auto-submit-credentials
+        run: eas build --platform android --profile preview --non-interactive
         
